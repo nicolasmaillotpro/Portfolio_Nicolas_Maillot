@@ -381,6 +381,16 @@ nav {
     gap: 30px;
 }
 
+.projects-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+#show-all-projects {
+    padding: 18px 40px;
+}
+
 .project-card {
     background: var(--secondary-bg);
     border-radius: 15px;

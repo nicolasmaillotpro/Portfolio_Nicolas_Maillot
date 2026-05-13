@@ -86,25 +86,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 5. Project Filtering
+    // 5. Project Filtering and "Show All" Logic
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
+    const showAllBtn = document.getElementById('show-all-projects');
+    const projectsFooter = document.querySelector('.projects-footer');
+    
+    let isShowingAll = false;
 
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active class from all buttons
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    const updateProjectVisibility = (filterValue = 'all') => {
+        let visibleCount = 0;
+        let totalMatching = 0;
 
-            const filterValue = btn.getAttribute('data-filter');
-
-            projectCards.forEach(card => {
-                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+        projectCards.forEach((card) => {
+            const matchesFilter = filterValue === 'all' || card.getAttribute('data-category') === filterValue;
+            
+            if (matchesFilter) {
+                totalMatching++;
+                if (isShowingAll || visibleCount < 3) {
                     card.style.display = 'block';
                     setTimeout(() => {
                         card.style.opacity = '1';
                         card.style.transform = 'translateY(0)';
                     }, 10);
+                    visibleCount++;
                 } else {
                     card.style.opacity = '0';
                     card.style.transform = 'translateY(20px)';
@@ -112,9 +117,60 @@ document.addEventListener('DOMContentLoaded', () => {
                         card.style.display = 'none';
                     }, 500);
                 }
-            });
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 500);
+            }
+        });
+
+        // Show/hide "Show All" button container if more than 3 projects match the filter
+        if (totalMatching > 3) {
+            projectsFooter.style.display = 'flex';
+        } else {
+            projectsFooter.style.display = 'none';
+        }
+    };
+
+    // Initial call
+    setTimeout(updateProjectVisibility, 100); // Small delay to ensure initial reveal animations don't conflict
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            isShowingAll = false; // Reset "Show All" state when filtering
+            updateProjectVisibility(btn.getAttribute('data-filter'));
+            if (showAllBtn) showAllBtn.innerText = 'Afficher tous les projets';
         });
     });
+
+    if (showAllBtn) {
+        showAllBtn.addEventListener('click', () => {
+            isShowingAll = !isShowingAll; // Toggle state
+            
+            const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+            updateProjectVisibility(activeFilter);
+
+            // Update button text
+            if (isShowingAll) {
+                showAllBtn.innerText = 'Masquer les projets';
+            } else {
+                showAllBtn.innerText = 'Afficher tous les projets';
+                
+                // Optional: Scroll back to the projects section header when hiding
+                const projectsSection = document.getElementById('projects');
+                if (projectsSection) {
+                    window.scrollTo({
+                        top: projectsSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    }
 
     // 6. Smooth Scroll for Nav Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
