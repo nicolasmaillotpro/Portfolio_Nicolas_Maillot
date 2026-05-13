@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let isShowingAll = false;
 
-    const updateProjectVisibility = (filterValue = 'all') => {
+    const updateProjectVisibility = (filterValue = 'all', instant = false) => {
         let visibleCount = 0;
         let totalMatching = 0;
 
@@ -105,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 totalMatching++;
                 if (isShowingAll || visibleCount < 3) {
                     card.style.display = 'block';
+                    // Small timeout to allow display: block to take effect before opacity transition
                     setTimeout(() => {
                         card.style.opacity = '1';
                         card.style.transform = 'translateY(0)';
@@ -113,20 +114,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     card.style.opacity = '0';
                     card.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
+                    if (instant) {
                         card.style.display = 'none';
-                    }, 500);
+                    } else {
+                        setTimeout(() => {
+                            if (card.style.opacity === '0') card.style.display = 'none';
+                        }, 400);
+                    }
                 }
             } else {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(20px)';
-                setTimeout(() => {
+                if (instant) {
                     card.style.display = 'none';
-                }, 500);
+                } else {
+                    setTimeout(() => {
+                        if (card.style.opacity === '0') card.style.display = 'none';
+                    }, 400);
+                }
             }
         });
 
-        // Show/hide "Show All" button container if more than 3 projects match the filter
+        // Show/hide "Show All" button container
         if (totalMatching > 3) {
             projectsFooter.style.display = 'flex';
         } else {
@@ -135,14 +144,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Initial call
-    setTimeout(updateProjectVisibility, 100); // Small delay to ensure initial reveal animations don't conflict
+    updateProjectVisibility('all', true);
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             isShowingAll = false; // Reset "Show All" state when filtering
-            updateProjectVisibility(btn.getAttribute('data-filter'));
+            updateProjectVisibility(btn.getAttribute('data-filter'), true);
             if (showAllBtn) showAllBtn.innerText = 'Afficher tous les projets';
         });
     });
