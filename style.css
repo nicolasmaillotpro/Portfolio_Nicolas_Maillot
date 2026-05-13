@@ -392,6 +392,7 @@ nav {
 }
 
 .project-card {
+    display: none;
     background: var(--secondary-bg);
     border-radius: 15px;
     overflow: hidden;

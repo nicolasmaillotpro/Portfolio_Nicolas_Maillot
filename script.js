@@ -98,38 +98,46 @@ document.addEventListener('DOMContentLoaded', () => {
         let visibleCount = 0;
         let totalMatching = 0;
 
+        // First pass: Count total matching
+        projectCards.forEach(card => {
+            const matchesFilter = filterValue === 'all' || card.getAttribute('data-category') === filterValue;
+            if (matchesFilter) totalMatching++;
+        });
+
+        // Second pass: Update styles
         projectCards.forEach((card) => {
             const matchesFilter = filterValue === 'all' || card.getAttribute('data-category') === filterValue;
+            const shouldShow = matchesFilter && (isShowingAll || visibleCount < 3);
             
-            if (matchesFilter) {
-                totalMatching++;
-                if (isShowingAll || visibleCount < 3) {
-                    card.style.display = 'block';
-                    // Small timeout to allow display: block to take effect before opacity transition
+            if (shouldShow) {
+                card.style.display = 'block';
+                if (instant) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                    card.classList.add('active'); // Sync with intersection observer state
+                } else {
+                    // Smooth entry for "Afficher tout"
                     setTimeout(() => {
                         card.style.opacity = '1';
                         card.style.transform = 'translateY(0)';
                     }, 10);
-                    visibleCount++;
-                } else {
+                }
+                visibleCount++;
+            } else {
+                // Hide
+                if (instant || !matchesFilter) {
+                    // Instant hide for filter changes or if explicitly requested
+                    card.style.display = 'none';
                     card.style.opacity = '0';
                     card.style.transform = 'translateY(20px)';
-                    if (instant) {
-                        card.style.display = 'none';
-                    } else {
-                        setTimeout(() => {
-                            if (card.style.opacity === '0') card.style.display = 'none';
-                        }, 400);
-                    }
-                }
-            } else {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                if (instant) {
-                    card.style.display = 'none';
                 } else {
+                    // Smooth fade out for "Masquer" button
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
                     setTimeout(() => {
-                        if (card.style.opacity === '0') card.style.display = 'none';
+                        if (card.style.opacity === '0') {
+                            card.style.display = 'none';
+                        }
                     }, 400);
                 }
             }
