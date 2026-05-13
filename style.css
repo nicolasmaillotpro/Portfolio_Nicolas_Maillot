@@ -474,12 +474,28 @@ nav {
 }
 
 .project-info .software {
-    font-size: 0.75rem;
-    color: var(--accent-color);
-    text-transform: uppercase;
-    font-weight: 700;
+    display: flex;
+    gap: 10px;
     margin-bottom: 20px;
-    letter-spacing: 1px;
+}
+
+.software-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.modal-software {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    margin-top: -5px;
+}
+
+.modal-software .software-icon {
+    width: 25px;
+    height: 25px;
 }
 
 .project-actions {

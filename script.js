@@ -174,8 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = card.querySelector('h3').innerText;
         const category = card.querySelector('.category-subtitle').innerText;
         const description = card.querySelector('p').innerText;
-        const software = card.querySelector('.software').innerText;
-        const detailsExtra = card.querySelector('.project-details').innerHTML;
+        const softwareHTML = card.querySelector('.software').innerHTML;
         const youtubeLink = card.querySelector('.view-project').getAttribute('href');
         
         // Get video source from iframe
@@ -186,12 +185,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('modal-title').innerText = title;
         document.getElementById('modal-category').innerText = category;
         
-        // Fix: Use the actual details content without duplicating the first paragraph
         const detailsContainer = card.querySelector('.project-details');
         document.getElementById('modal-description').innerHTML = ''; // Clear description field as we move everything to details-extra
         document.getElementById('modal-details-extra').innerHTML = detailsContainer.innerHTML;
         
-        document.getElementById('modal-software').innerText = software;
+        document.getElementById('modal-software').innerHTML = softwareHTML;
         document.getElementById('modal-link').setAttribute('href', youtubeLink);
 
         if (videoSrc) {
