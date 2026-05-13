@@ -783,7 +783,7 @@ body.modal-open {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3));
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
 }
 
 .skill-card h3 {
