@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Monteur Vidéo & Motion Designer</title>
+    <meta name="description" content="Portfolio professionnel de montage vidéo et motion design cinématographique.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;600;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <span class="loader-text">CRÉATIVITÉ</span>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor" class="cursor"></div>
+    <div id="cursor-follower" class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">PORTFOLIO<span>.</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">À Propos</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#showreel">Showreel</a></li>
+                <li><a href="#skills">Compétences</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-video-container">
+                <!-- Placeholder for actual video -->
+                <div class="media-placeholder video-placeholder">
+                    <!-- Ready for video file -->
+                </div>
+            </div>
+            <div class="hero-content">
+                <h1 class="reveal-text">Je transforme les idées en <span class="accent">expériences visuelles.</span></h1>
+                <p class="reveal-text delay-1">Monteur Vidéo spécialisé dans le storytelling cinématographique.</p>
+                <div class="hero-btns reveal-text delay-2">
+                    <a href="#projects" class="btn btn-primary">Voir mes projets</a>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse"></div>
+                <span>Scroll</span>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about section-padding">
+            <div class="container grid-2">
+                <div class="about-image">
+                    <div class="profile-image-container reveal">
+                        <img src="NICOLAS.JPG" alt="Nicolas" class="profile-img">
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h2 class="section-title">À Propos<span>.</span></h2>
+                    <p class="reveal">Salut ! Moi, c’est Nicolas, j’ai 25 ans et je suis actuellement en études d’audiovisuel. Ma passion pour la vidéo a commencé bien avant mes études, à une époque où je passais déjà des heures sur des logiciels de montage à expérimenter et créer par curiosité.</p>
+                    <p class="reveal">Avec le temps, cette passion est devenue une véritable vocation. Aujourd’hui, je me spécialise dans le montage vidéo, avec une attention particulière portée au rythme, à l’émotion et à l’impact visuel.</p>
+                    <p class="reveal">Mon objectif est simple : créer des vidéos modernes, dynamiques et immersives, capables de marquer les esprits et de donner une vraie identité à chaque projet.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Mes Projets<span>.</span></h2>
+                    <div class="project-filters">
+                        <button class="filter-btn active" data-filter="all">Tous</button>
+                        <button class="filter-btn" data-filter="b1">Projets B1</button>
+                        <button class="filter-btn" data-filter="b2">Projets B2</button>
+                        <button class="filter-btn" data-filter="personal">Personnels</button>
+                        <button class="filter-btn" data-filter="outside">Hors Études</button>
+                        <button class="filter-btn" data-filter="experiments">Expérimentations</button>
+                    </div>
+                </div>
+
+                <div class="project-grid">
+                    <!-- Project Item Template (Repeated for each category) -->
+                    <div class="project-card" data-category="b1">
+                        <div class="project-media">
+                            <div class="media-placeholder">
+                                <span>MINIATURE VIDÉO (HOVER PREVIEW)</span>
+                            </div>
+                            <div class="project-overlay">
+                                <span class="year">2024</span>
+                                <div class="tags">
+                                    <span>Montage</span>
+                                    <span>Color Grading</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Titre du Projet B1</h3>
+                            <p>Courte description de l'approche créative et des objectifs du projet.</p>
+                            <div class="software">DaVinci Resolve, Premiere Pro</div>
+                            <a href="#" class="view-project">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="b2">
+                        <div class="project-media">
+                            <iframe src="https://www.youtube-nocookie.com/embed/pngQFBlkRhc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 1;"></iframe>
+                            <div class="project-overlay">
+                                <span class="year">2025</span>
+                                <div class="tags">
+                                    <span>Montage</span>
+                                    <span>Storytelling</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Projet B2 - Montage</h3>
+                            <p>Analyse visuelle et technique réalisée durant la deuxième année.</p>
+                            <div class="software">Premiere Pro, After Effects</div>
+                            <a href="https://youtu.be/pngQFBlkRhc" target="_blank" class="view-project">Voir sur YouTube <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-category="personal">
+                        <div class="project-media">
+                            <div class="media-placeholder">
+                                <span>MINIATURE VIDÉO</span>
+                            </div>
+                            <div class="project-overlay">
+                                <span class="year">2025</span>
+                                <div class="tags">
+                                    <span>Storytelling</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <h3>Projet Personnel</h3>
+                            <p>Exploration artistique libre axée sur l'émotion visuelle.</p>
+                            <div class="software">DaVinci Resolve</div>
+                            <a href="#" class="view-project">Voir le projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Showreel Section -->
+        <section id="showreel" class="showreel section-padding">
+            <div class="container">
+                <h2 class="section-title centered">Showreel<span>.</span></h2>
+                <div class="showreel-container">
+                    <div class="media-placeholder video-placeholder large">
+                        <div class="play-icon">▶</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills section-padding">
+            <div class="container">
+                <h2 class="section-title">Expertise<span>.</span></h2>
+                <div class="skills-grid">
+                    <div class="skill-card reveal">
+                        <h3>DaVinci Resolve</h3>
+                        <div class="stars">
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star half">★</span>
+                        </div>
+                    </div>
+                    <div class="skill-card reveal">
+                        <h3>Premiere Pro</h3>
+                        <div class="stars">
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                    <div class="skill-card reveal">
+                        <h3>After Effects</h3>
+                        <div class="stars">
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star filled">★</span>
+                            <span class="star half">★</span>
+                            <span class="star">★</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Creative Process Section -->
+        <section id="process" class="process section-padding">
+            <div class="container">
+                <h2 class="section-title centered">Workflow de Montage<span>.</span></h2>
+                <div class="timeline">
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>ANALYSE</h4>
+                            <p>Compréhension du projet, du rythme et de l’intention visuelle.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>SÉLECTION DES PLANS</h4>
+                            <p>Tri des rushs et choix des séquences les plus fortes.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>MONTAGE</h4>
+                            <p>Construction du rythme, des transitions et de la narration visuelle.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>SOUND DESIGN</h4>
+                            <p>Travail de l’immersion sonore, des ambiances et de l’impact audio.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>COLOR GRADING</h4>
+                            <p>Harmonisation des couleurs et création de l’ambiance finale.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>EXPORT FINAL</h4>
+                            <p>Optimisation et rendu haute qualité pour chaque plateforme.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact / Alternance Section -->
+        <section id="contact" class="contact section-padding">
+            <div class="contact-bg-video">
+                <div class="media-placeholder video-placeholder">
+                    <!-- Mini loop video placeholder -->
+                </div>
+            </div>
+            <div class="container relative">
+                <div class="alternance-content centered">
+                    <h2 class="section-title">Mon prochain projet : <br><span class="accent">Votre équipe.</span></h2>
+                    <p class="reveal">Je suis actuellement à la recherche d’une alternance en montage vidéo afin d’intégrer une structure créative où je pourrai mettre en pratique ma passion pour la post-production. Ma recherche se concentre prioritairement sur Bordeaux, mais je reste ouvert à toute opportunité dans d'autres villes.</p>
+                    
+                    <div class="disponibilite reveal">
+                        <span>Disponible dès Septembre 2026</span>
+                    </div>
+
+                    <div class="contact-actions reveal">
+                        <a href="#" class="btn btn-primary btn-large">Télécharger mon CV</a>
+                    </div>
+
+
+                    <div class="email-info reveal">
+                        <a href="mailto:nicolas.maillot.pro@gmail.com" class="email-link">nicolas.maillot.pro@gmail.com</a>
+                    </div>
+
+                    <div class="contact-box reveal">
+                        <form id="contact-form">
+                            <div class="form-row">
+                                <input type="text" placeholder="Nom" required>
+                                <input type="email" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Votre message" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Envoyer l'e-mail</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Portfolio. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
