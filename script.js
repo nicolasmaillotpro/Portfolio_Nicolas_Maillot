@@ -164,6 +164,74 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // 5. Project Modal Logic
+    const modal = document.getElementById('project-modal');
+    const modalClose = document.querySelector('.modal-close');
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const expandBtns = document.querySelectorAll('.expand-project');
+
+    const openModal = (card) => {
+        const title = card.querySelector('h3').innerText;
+        const category = card.querySelector('.category-subtitle').innerText;
+        const description = card.querySelector('p').innerText;
+        const software = card.querySelector('.software').innerText;
+        const detailsExtra = card.querySelector('.project-details').innerHTML;
+        const youtubeLink = card.querySelector('.view-project').getAttribute('href');
+        
+        // Get video source from iframe
+        const originalIframe = card.querySelector('iframe');
+        const videoSrc = originalIframe ? originalIframe.getAttribute('src') : '';
+
+        // Inject content into modal
+        document.getElementById('modal-title').innerText = title;
+        document.getElementById('modal-category').innerText = category;
+        
+        // Fix: Use the actual details content without duplicating the first paragraph
+        const detailsContainer = card.querySelector('.project-details');
+        document.getElementById('modal-description').innerHTML = ''; // Clear description field as we move everything to details-extra
+        document.getElementById('modal-details-extra').innerHTML = detailsContainer.innerHTML;
+        
+        document.getElementById('modal-software').innerText = software;
+        document.getElementById('modal-link').setAttribute('href', youtubeLink);
+
+        if (videoSrc) {
+            document.getElementById('modal-media').innerHTML = `<iframe src="${videoSrc}?autoplay=1" allow="autoplay; fullscreen"></iframe>`;
+        } else {
+            // Placeholder if no video
+            const placeholder = card.querySelector('.media-placeholder');
+            document.getElementById('modal-media').innerHTML = placeholder ? placeholder.outerHTML : '';
+        }
+
+        // Show modal
+        modal.classList.add('active');
+        document.body.classList.add('modal-open');
+    };
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+        // Stop video by clearing content
+        document.getElementById('modal-media').innerHTML = '';
+    };
+
+    expandBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const card = btn.closest('.project-card');
+            openModal(card);
+        });
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', closeModal);
+    
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
     if (showAllBtn) {
         showAllBtn.addEventListener('click', () => {
             isShowingAll = !isShowingAll; // Toggle state
@@ -177,7 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 showAllBtn.innerText = 'Afficher tous les projets';
                 
-                // Optional: Scroll back to the projects section header when hiding
                 const projectsSection = document.getElementById('projects');
                 if (projectsSection) {
                     window.scrollTo({
