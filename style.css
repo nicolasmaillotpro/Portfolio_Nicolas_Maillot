@@ -110,7 +110,7 @@ ul {
 .loader-text {
     font-family: 'Outfit', sans-serif;
     font-size: 1.5rem;
-    letter-spacing: 15px;
+    letter-spacing: 5px;
     font-weight: 600;
     display: block;
     margin-bottom: 20px;
@@ -125,7 +125,7 @@ ul {
 }
 
 @keyframes load {
-    to { width: 200px; }
+    to { width: 100%; max-width: 300px; }
 }
 
 @keyframes pulse {
