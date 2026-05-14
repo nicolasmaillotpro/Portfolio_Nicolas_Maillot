@@ -81,6 +81,13 @@ ul {
     pointer-events: none;
     z-index: 9999;
     transition: transform 0.1s ease;
+    display: none; /* Hide by default */
+}
+
+@media (pointer: fine) {
+    .cursor {
+        display: block;
+    }
 }
 
 .cursor-follower {
@@ -93,6 +100,13 @@ ul {
     z-index: 9998;
     transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), background 0.3s ease;
     box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    display: none; /* Hide by default */
+}
+
+@media (pointer: fine) {
+    .cursor-follower {
+        display: block;
+    }
 }
 
 /* Loader */

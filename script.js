@@ -20,16 +20,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let mouseX = 0, mouseY = 0;
 
     document.addEventListener('mousemove', (e) => {
-        // Disable custom cursor on touch devices
+        // Disable custom cursor on touch devices (redundant check for safety)
         if (window.matchMedia("(pointer: coarse)").matches) return;
         
         mouseX = e.clientX;
         mouseY = e.clientY;
         
-        cursor.style.left = `${mouseX}px`;
-        cursor.style.top = `${mouseY}px`;
-        cursor.style.display = 'block';
-        follower.style.display = 'block';
+        // Show only if pointer is fine
+        if (window.matchMedia("(pointer: fine)").matches) {
+            cursor.style.left = `${mouseX}px`;
+            cursor.style.top = `${mouseY}px`;
+            cursor.style.display = 'block';
+            follower.style.display = 'block';
+        }
     });
 
     // Hide cursors if touch device or mouse leaves window
