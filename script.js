@@ -20,11 +20,22 @@ document.addEventListener('DOMContentLoaded', () => {
     let mouseX = 0, mouseY = 0;
 
     document.addEventListener('mousemove', (e) => {
+        // Disable custom cursor on touch devices
+        if (window.matchMedia("(pointer: coarse)").matches) return;
+        
         mouseX = e.clientX;
         mouseY = e.clientY;
         
         cursor.style.left = `${mouseX}px`;
         cursor.style.top = `${mouseY}px`;
+        cursor.style.display = 'block';
+        follower.style.display = 'block';
+    });
+
+    // Hide cursors if touch device or mouse leaves window
+    document.addEventListener('mouseleave', () => {
+        cursor.style.display = 'none';
+        follower.style.display = 'none';
     });
 
     // Lerp effect for the follower
@@ -54,12 +65,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Navigation Scroll Effect
     const header = document.querySelector('header');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
+    });
+
+    // Mobile Menu Toggle
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+    }
+
+    // Close menu when clicking a link
+    const links = document.querySelectorAll('.nav-links a');
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        });
     });
 
     // 4. Reveal on Scroll (Intersection Observer)
